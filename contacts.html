@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Moldcell</title>
+    <link rel="shortcut icon" href="resources/images/logos/logomd.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="myApp" ng-controller="productsCtrl"></body>
+<header>
+    <div class="wrapper container">
+        <nav class="navbar navbar-expand-lg row">
+            <a class="navbar-brand col-xs-2" href="index.html">
+                <img width="270px" height="100px" class="img-responsive" src="resources/images/logos/logomd.png" alt="Moldcell">
+            </a>
+
+            <nav class="two">
+                <ul>
+                    <li><a href="index.html"><i class="fa fa-home fa-fw"></i>Главная</a></li>
+                    <li><a href="aboutUs.html">О нас</a></li>
+                    <li><a href="products.html">Товары</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li ng-show="isSignIn == false">
+                        <button id="myBtn">Вход</button>
+                    </li>
+                    <li ng-show="isSignIn == true">
+                        <button class="btn-success">Привет, {{login | uppercase}}</button>
+                    </li>
+                    <li ng-show="isSignIn == true">
+                        <button class="btn-danger" ng-click="isSignIn = false">Выход</button>
+                    </li>
+                </ul>
+            </nav>
+
+        </nav>
+    </div>
+</header>
+
+
+<div class="container" style="background-color: #e8daf1;" ng-app="myApp" ng-controller="questionCtrl" ng-init="showNoBtn=true; showAnswer=false; showForm=true;">
+
+    <h1 class="text-center text-uppercase font-weight-bold mt-5 mb-5">ASK YOUR QUESTION</h1>
+
+    <form name="myForm" novalidate ng-submit="showAnswer=true;">
+
+        <p>Your name:<br>
+            <input class="form-control" type="text" name="user" ng-model="username" required>
+            <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+                        <span ng-show="myForm.user.$error.required">Username is required.</span>
+            </span>
+        </p>
+
+        <p>Email:<br>
+            <input class="form-control" type="email" name="email" ng-model="email" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                        <span ng-show="myForm.email.$error.required">Email is required.</span>
+            <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+            </span>
+        </p>
+
+        <p>Age: <br>
+            <input class="form-control" type="number" ng-model="userAge" ng-init="userAge=0;">
+            <span class="text-info small">{{userAge | myFilterAge}}</span>
+        </p>
+
+        <p>Choose the question type:</p>
+        <select class="form-control" ng-model="qType">
+                    <option ng-repeat="x in typeOfQuestions">{{x}}</option>
+                </select> <br>
+
+        <p>Describe your problem:</p>
+        <textarea class="form-control" rows="5" ng-model="description"></textarea>
+        <br>
+
+        <p>Do you like our service?</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                        YES
+                    </label>
+        </div>
+        <div class="form-check" ng-show="showNoBtn">
+            <input ng-mouseover="showNoBtn=false;" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+                        NO
+                    </label>
+        </div> <br>
+
+        <p>
+            <input class="btn btn-primary" type="submit" ng-click="showAnswer=true;" ng-disabled="myForm.email.$error.required && !myForm.description.$invalid">
+
+        </p>
+    </form>
+
+    <div ng-show="showAnswer==true">
+        <h3 class="text-center text-success">Ваш вопрос отправлен. Наш сотрудник свяжется с вами.</h3>
+    </div>
+
+
+    
+    <div class="container">
+        <h3 class="text-center text-uppercase font-weight-bold mt-5 mb-5">Наши контакты</h3>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.0242160698217!2d28.837345815486586!3d47.02012967915015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c3a78ae5391%3A0x8e7f3eaf8afcf45e!2sMoldcell%20Center!5e0!3m2!1sru!2s!4v1602680578886!5m2!1sru!2s"
+                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+
+            <div class="col-sm-4" id="contact2">
+                <h3>Контакты</h3>
+                <hr align="left" width="50%">
+                <h4 class="pt-2">Адресс</h4>
+                <i class="fa fa-globe" style="color:#000"></i> мун. Кишинэу, ул. Белград 3
+                <br>
+                <h4 class="pt-2">Телефоны</h4>
+                <i class="fa fa-phone" style="color:#000"></i> <a href="tel:+"> (+373) 022 444 444 ;  </a><br>
+                <i class="fa fa-whatsapp" style="color:#000"></i><a href="tel:+"> (+373) 78 000 444 ; </a><br>
+                <h4 class="pt-2">Email</h4>
+                <i class="fa fa-envelope" style="color:#000"></i> <a href="">reception@moldcell.md; eshop@moldcell.md</a><br>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+<footer>
+    <div class="container">
+
+        <ul class="list-unstyled list-inline text-center">
+
+            <h3 class="text-uppercase mb-4">Следите за нами</h3>
+            <li class="list-inline-item">
+                <a href="https://www.facebook.com/moldcell" class="btn-floating btn-fb mx-1">
+                    <i class="fa fa-facebook"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="" class="btn-floating btn-tw mx-1">
+                    <i class="fa fa-twitter"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="" class="btn-floating btn-gplus mx-1">
+                    <i class="fa fa-youtube"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="" class="btn-floating btn-li mx-1">
+                    <i class="fa fa-instagram"> </i>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+</footer>
+
+
+
+<div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="index.html"> Moldova Moldcell</a>
+</div>
+<div id="myModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <h2 class="text-center text-uppercase font-weight-bold">Sign in</h2> <br>
+            <form ng-submit="signIn()">
+                <h2 class="text-center">Login</h2>
+                <input ng-model="inputLogin" class="form-control" type="text"> <br>
+
+                <h2 class="text-center">Password</h2>
+                <input ng-model="inputPass" class="form-control" type="password"> <br>
+
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign in"> <br>
+                <input class="btn btn-danger btn-lg btn-block" type="reset" value="Reset"><br> <br>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script src="js/myApp.js"></script>
+<script src="js/questionCtrl.js"></script>
+<script src="js/modalView.js"></script>
+<script src="js/productsCtrl.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Moldcell</title>
+    <link rel="shortcut icon" href="resources/images/logos/logomd.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="myApp" ng-controller="productsCtrl"></body>
+<header>
+    <div class="wrapper container">
+        <nav class="navbar navbar-expand-lg row">
+            <a class="navbar-brand col-xs-2" href="index.html">
+                <img width="270px" height="100px" class="img-responsive" src="resources/images/logos/logomd.png" alt="Moldcell">
+            </a>
+
+            <nav class="two">
+                <ul>
+                    <li><a href="index.html"><i class="fa fa-home fa-fw"></i>Главная</a></li>
+                    <li><a href="aboutUs.html">О нас</a></li>
+                    <li><a href="products.html">Товары</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li ng-show="isSignIn == false">
+                        <button id="myBtn">Вход</button>
+                    </li>
+                    <li ng-show="isSignIn == true">
+                        <button class="btn-success">Привет, {{login | uppercase}}</button>
+                    </li>
+                    <li ng-show="isSignIn == true">
+                        <button class="btn-danger" ng-click="isSignIn = false">Выход</button>
+                    </li>
+                </ul>
+            </nav>
+
+        </nav>
+    </div>
+</header>
+
+<div class="container" style="background-color: #e8daf1;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="article" ng-copy="count = count + 1" ng-init="count=374">
+
+                <h2 style="text-align: center;">
+                    <div class="content-head">
+                        <h3 class="text-left text-uppercase font-weight-bold mt-5 mb-5">Об операторе Moldcell</h3>
+                        <p ng-non-bindable><span>«Moldcell» — оператор сотовой связи в Молдавии</span></p>
+                    </div><span style="color: #333333;"><strong>История Moldcell</strong></span></h2>
+                <div style="text-align: justify;"><span style="color: #333333;">28 апреля 2000 года, компания Moldcell открыла свой первый офис продаж в Кишиневе, по адресу: улица Тигина, 55. В этом же году, впервые в Молдове оператор внедрил услугу SMS для своих абонентов наряду с первым предоплаченным пакетом. Первый логотип компании представлял собой дружелюбного оленёнка, а первый слоган, впоследствии ставший знаменитым, звучал так: «Вы нас ждали? Мы пришли!»  </span></div>
+                <div style="text-align: justify;"><span style="color: #333333;">На свою пятую годовщину компания Moldcell представила свой круглосуточный Отдел Абонентских Услуг (доступный по номеру 444 с мобильного телефона и 022 444 444 со стационарного). Также, в 2005 году компания Moldcell впервые внедрила технологию EDGE, которая позволила трёхкратно увеличить скорость мобильного Интернета.</span></div>
+                <div style="text-align: justify;"><span style="color: #333333;">Первый тарифный план, посвященный людям с нарушениями слуха, был запущен компанией Moldcell в 2006 году. В основе пакета Alocard Alternativ лежали текстовые сообщения и интернет услуги, а также специализированный отдел обслуживания клиентов. В 2007 году Moldcell стал первым оператором, внедрившим электронные платежи для своих клиентов. Менее чем через год 17 % из операций по пополнению счета осуществлялись посредством терминалов, а на конец 2014 года, доля таких платежей составляла 63 %.</span></div>
+                <div style="text-align: justify;"><span style="color: #333333;">Компания Moldcell запустила услуги 3G в 2008 году. А всего через год мажоритарный акционер Moldcell -компания TeliaSonera первой в мире осуществила коммерческий запуск сети 4G. На своё десятилетие Moldcell изменил свой логотип и стал фиолетовым. </span></div>
+                <div style="text-align: justify;"><span style="color: #333333;">Ребрендинг компании был произведен за одну ночь, а вечером 28 апреля 2010 года на Площади Великого Национального Собрания в Кишиневе состоялся открытый концерт, организованный Moldcell, на который пришло рекордное количество зрителей — 120 000 человек. Компания Moldcell стала первым оператором 4G в Молдове в 2012 году. Тогда же компания впервые в Молдове запустила, услуги mSănătate для некоторых категорий пользователей, в том числе беременных женщин и молодых мам.</span></div>
+                <div style="text-align: justify;"><span style="color: #333333;">В 2012 году Молдова стала восьмой страной в мире, внедрившей услугу мобильная подпись. Moldcell внес стратегический вклад в этот проект, привнеся команде местных разработчиков опыт Балтийских компаний, членов группы TeliaSonera. </span></div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <br>
+    <p>Это текст кому-то понадобился уже {{count}} раз.</p>
+
+</div>
+
+
+<div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="index.html"> Moldova Moldcell</a>
+</div>
+
+<div id="myModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <h2 class="text-center text-uppercase font-weight-bold">Sign in</h2> <br>
+            <form ng-submit="signIn()">
+                <h2 class="text-center">Login</h2>
+                <input ng-model="inputLogin" class="form-control" type="text"> <br>
+
+                <h2 class="text-center">Password</h2>
+                <input ng-model="inputPass" class="form-control" type="password"> <br>
+
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign in"> <br>
+                <input class="btn btn-danger btn-lg btn-block" type="reset" value="Reset"><br> <br>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/modalView.js"></script>
+<script src="js/myApp.js"></script>
+<script src="js/productsCtrl.js"></script>
+</body>
+
+</html>
